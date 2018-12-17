@@ -15,9 +15,19 @@ public class Vertex implements Comparable<Vertex> {
     private final int id;
     private Vertex previous;
     private String value;
+    private String decompressedValue;
     private int valuelength;
     private double minDistance = Double.POSITIVE_INFINITY;
     private List<Edge> adjacencies = new ArrayList<>();
+
+    public Vertex(int id, Vertex previous, String value, int valuelength, String decompressedValue, double minDistance) {
+        this.id = id;
+        this.previous = previous;
+        this.value = value;
+        this.valuelength = valuelength;
+        this.decompressedValue = decompressedValue;
+        this.minDistance = minDistance;
+    }
 
     Vertex(int id) {
         this.id = id;
@@ -67,6 +77,7 @@ public class Vertex implements Comparable<Vertex> {
                 }
             }
         }
+        decompressedValue = builder.toString();
         return builder.length();
     }
 
@@ -77,8 +88,8 @@ public class Vertex implements Comparable<Vertex> {
                 ", previous=" + previous +
                 ", value='" + value + '\'' +
                 ", valueLength='" + valuelength + '\'' +
+                ", decompressedValue=" + decompressedValue +
                 ", minDistance=" + minDistance +
-                ", adjacencies=" + adjacencies +
                 '}';
     }
 

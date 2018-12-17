@@ -6,11 +6,11 @@ public class Main {
         Path path = new Path("test.txt");
         path.buildGraph();
 
-        Vertex one = path.getSource();
-        Vertex eight = path.getDestination();
+        Vertex one = Path.getVertices().get(0);
+        Vertex eight = Path.getVertices().get(7);
 
-        System.out.print("Edge Path: " + path.findPath());
-        System.out.print("\nString sequence path: " + path.getPathString());
+        System.out.print("Edge Path: " + path.findPath(one, eight));
+        System.out.print("\nString sequence path: " + path.getPathString(one, eight));
         System.out.println("\nDistance from " + one.getId() + " to " + eight.getId() + " = " + eight.getMinDistance());
     }
 

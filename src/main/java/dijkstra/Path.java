@@ -16,19 +16,16 @@ import static java.util.stream.Collectors.toList;
 @RequiredArgsConstructor
 public class Path implements PathInterface {
 
+    @Getter
     private static List<Vertex> vertices = new ArrayList<>();
     private static Map<Integer, List<Integer>> edgeAdjacencies = new HashMap<>();
 
-    @Getter
-    private Vertex source;
-    @Getter
-    private Vertex destination;
     private final String filename;
 
     @Override
     public void buildGraph() {
         String workDirectory = System.getProperty("user.dir");
-        File file=new File(workDirectory + "/src/main/java/dijkstra/" + filename);
+        File file = new File(workDirectory + "/src/main/java/dijkstra/" + filename);
         Scanner sc = null;
 
         try {
@@ -81,15 +78,12 @@ public class Path implements PathInterface {
                     .collect(toList());
             v.setAdjacencies(adjecencies);
         }
-
-        source = vertices.get((int) Byte.parseByte(sc.nextLine(), 2) - 1);
-        destination = vertices.get((int) Byte.parseByte(sc.nextLine(), 2) - 1);
-
+        System.out.println(vertices);
         sc.close();
     }
 
     @Override
-    public String findPath() {
+    public String findPath(Vertex source, Vertex destination) {
         Dijkstra.computePaths(source);
         StringBuilder edgePath = new StringBuilder();
 
@@ -103,7 +97,7 @@ public class Path implements PathInterface {
     }
 
     @Override
-    public String getPathString() {
+    public String getPathString(Vertex source, Vertex destination) {
         Dijkstra.computePaths(source);
         StringBuilder edgePath = new StringBuilder();
 
