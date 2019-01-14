@@ -78,7 +78,6 @@ public class Path implements PathInterface {
                     .collect(toList());
             v.setAdjacencies(adjecencies);
         }
-        System.out.println(vertices);
         sc.close();
     }
 
